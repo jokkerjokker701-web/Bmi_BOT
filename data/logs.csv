@@ -1,0 +1,3 @@
+id,created_at,user_id,username,input_url,final_url,expanded,score,level,vt_malicious,vt_suspicious,vt_harmless,vt_undetected
+2,2026-02-12T20:23:23.673763+00:00,8212613318,Joxa_5122,https://tvcom.uz/uzb,https://tvcom.uz/uzb,0,60,🟠 MEDIUM,1,0,64,29
+1,2026-02-12T20:23:05.209303+00:00,8212613318,Joxa_5122,https://kun.uz,https://kun.uz,0,0,🟢 LOW,0,0,67,27

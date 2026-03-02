@@ -1,0 +1,4 @@
+python-telegram-bot==21.6
+tldextract==5.1.2
+idna==3.7
+python-dotenv==1.0.1
