@@ -1,36 +1,36 @@
-import sqlite3
 import csv
 import os
+import sqlite3
 
 DB_PATH = os.path.join("data", "bot.db")
 OUT_CSV = os.path.join("data", "logs.csv")
+
 
 def main():
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
 
-    cur.execute("""
-        SELECT id, created_at, user_id, username,
-               input_url, final_url, expanded,
-               score, level,
-               vt_malicious, vt_suspicious, vt_harmless, vt_undetected
+    cur.execute(
+        """
+        SELECT id, created_at, telegram_id, username, input_url, final_url,
+               score, verdict, reasons, vt_stats
         FROM url_checks
         ORDER BY id DESC
-        LIMIT 500
-    """)
+        LIMIT 1000
+        """
+    )
     rows = cur.fetchall()
-
     headers = [d[0] for d in cur.description]
-
     conn.close()
 
     os.makedirs("data", exist_ok=True)
     with open(OUT_CSV, "w", newline="", encoding="utf-8") as f:
-        w = csv.writer(f)
-        w.writerow(headers)
-        w.writerows(rows)
+        writer = csv.writer(f)
+        writer.writerow(headers)
+        writer.writerows(rows)
 
-    print("OK:", OUT_CSV)
+    print(f"OK: {OUT_CSV}")
+
 
 if __name__ == "__main__":
     main()
